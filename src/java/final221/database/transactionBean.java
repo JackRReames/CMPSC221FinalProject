@@ -9,7 +9,7 @@ public class transactionBean {
 //    private int custID;
 //    private int prodID;
     private long transTimestamp;
-    
+    asdasdasd
     public transactionBean() {
         transTimestamp = System.currentTimeMillis();
     }
