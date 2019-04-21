@@ -26,30 +26,60 @@ public class productBean {
         prodInventory = 0;
     }
     
+    /**
+     * Regular constructor for this bean
+     * @param name A product name
+     * @param price A product price
+     * @param inv An amount of a product in the inventory
+     */
     public productBean(String name, double price, int inv) {
         prodName = name;
         prodPrice = price;
         prodInventory = inv;
     }
     
-    
+    // set methods
+    /**
+     * Assigns the product name
+     * @param name A product name
+     */
     public void setProdName(String name) {
         prodName = name;
     }
+    /**
+     * Assigns the product's price
+     * @param price A product price
+     */
     public void setProdPrice(double price) {
         prodPrice = price;
     }
+    /**
+     * Assigns the amount of the product in the inventory
+     * @param inv An amount of the product in the inventory
+     */
     public void setProdInventory(int inv) {
         prodInventory = inv;
     }
     
-    
+    // get methods
+    /**
+     * Retrieves the product name
+     * @return A String containing the product name
+     */
     public String getProdName() {
         return prodName;
     }
+    /**
+     * Retrieves the product price
+     * @return A double containing the product price
+     */
     public double getProdPrice() {
         return prodPrice;
     }
+    /**
+     * Retrieves the amount of the product in the inventory
+     * @return An int containing the amount of the product in the inventory
+     */
     public int getProdInventory() {
         return prodInventory;
     }
