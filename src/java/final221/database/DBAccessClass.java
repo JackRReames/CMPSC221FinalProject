@@ -2,9 +2,10 @@ package final221.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.io.*;
+import java.util.*;
+
 /**
  * CMPSC 221 Final Project
  * DBAccessClass.java
@@ -14,37 +15,59 @@ import java.sql.SQLException;
  * @version 1.0 4/30/2019
  */
 public class DBAccessClass {
-    
-    private static final String URL = "jdbc:derby://localhost:1527/SalaryTable";
-    private static final String USERNAME = "app";
-    private static final String PASSWORD = "app";
-    private Connection connection = null; // manages connection
-
-//    private PreparedStatement selectPeopleByLastName = null; 
-//    private PreparedStatement insertNewPerson = null; 
-    
+    // declare our connection object
+    private Connection connection = null; 
+    /**
+     * Pulls information from a db.properties file and then uses it to connect to the database
+     */
     public DBAccessClass()
     {
+        // variables to hold the required db connection info
+        String driver = null;
+        String url = null;
+        String user = null;
+        String password = null;
+        // attempt to grab all of the above info from the db.properties file
         try {
+            ResourceBundle resources;
+            InputStream in = null;
+            ResourceBundle newResources;
             
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            in = ClassLoader.getSystemResourceAsStream("db.properties");
             
-            // create query that selects entries with a specific last name
-//            selectPeopleByLastName = connection.prepareStatement("SELECT * FROM saltbl WHERE LastName = ?");
-         
-            // create insert that adds a new entry into the database
-//            insertNewPerson = connection.prepareStatement( 
-//                "INSERT INTO SALTBL " + 
-//                "(FirstName, LastName, YearlySal, MonthlySal) " + 
-//                "VALUES (?, ?, ?, ?)");
+            resources = new PropertyResourceBundle(in);
+            
+            in.close();
+            
+            driver = resources.getString("jdbc.driver");
+            url = resources.getString("jdbc.url");
+            System.out.println(url);
+            user = resources.getString("jdbc.user");
+            password = resources.getString("jdbc.password");
         } // end try
-        catch ( SQLException sqlException )
-        {
+        catch (Exception exp) {
+            System.out.println("Couldn't load resources." + exp);
+            System.exit(-1);
+        } // end catch
+        // attempt to load the driver
+        try {
+            Class.forName(driver);
+        }
+        catch (Exception e) {
+            System.out.println("Failed to load driver.");
+            return;
+        }
+        // attempt to connect to the database
+        try {
+            connection = DriverManager.getConnection(url,user,password);  
+        }
+        catch (SQLException sqlException) {
             sqlException.printStackTrace();
             System.exit( 1 );
         } // end catch
-    } // end PersonQueries constructor
-        /**
+    } // end DBAccessClass constructor
+    
+    /**
     * Attempts to close the connection to the database
     */
     public void close() {
@@ -55,61 +78,4 @@ public class DBAccessClass {
             sqlException.printStackTrace();
         } // end catch
     } // end method close
-    /**
-    * Attempts to add a person to the database. This code is heavily modified from an earlier lab.
-    * 
-    * @param fName A first name
-    * @param lName A last name
-    * @param ySal A yearly salary
-    * @param mSal A monthly salary
-    * @return An int whose 3 states tell the main function how this attempt went. 1 == success, 2 == database issue, 3 == dupe entry
-    */
-//    public int addPerson(String fName, String lName, double ySal, double mSal) {
-//        // result will be used in the main function to determine if the entry was successful
-//        int result = 0;
-//        // we make a resultSet to check if an entry is a dupe
-//        ResultSet resultSet = null;
-//        // attempt to do the entry
-//        try {
-//            selectPeopleByLastName.setString( 1, lName ); // specify last name
-//
-//            // executeQuery returns ResultSet containing matching entries
-//            resultSet = selectPeopleByLastName.executeQuery(); 
-//            // if this function returns true then there is a matching entry in the table
-//            if(resultSet.next()) {
-//                // -1 == Duplicate entry in table
-//                result = -1;
-//            } else {
-//                // set parameters, then execute insertNewPerson
-//                try {
-//                    insertNewPerson.setString( 1, fName );
-//                    insertNewPerson.setString( 2, lName );
-//                    insertNewPerson.setDouble( 3, ySal );
-//                    insertNewPerson.setDouble( 4, mSal );
-//
-//                 // insert the new entry; returns # of rows updated
-//                    result = insertNewPerson.executeUpdate(); 
-//                } // end try
-//                catch ( SQLException sqlException ) { 
-//                    sqlException.printStackTrace();
-//                    close();
-//                } // end catch
-//            }
-//        }
-//        catch ( SQLException sqlException ) {
-//            sqlException.printStackTrace();
-//        } // end catch
-//        finally {
-//            try {
-//                resultSet.close();
-//            } // end try
-//            catch ( SQLException sqlException ) {
-//                sqlException.printStackTrace();         
-//                close();
-//            } // end catch
-//        } // end finally
-//
-//        return result;
-//    } // end method addPerson
-
 }
