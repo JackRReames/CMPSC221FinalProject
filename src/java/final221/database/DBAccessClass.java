@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * CMPSC 221 Final Project
+ * CMPSC 221 Final Program
  * DBAccessClass.java
  * Purpose: This class handles connecting to the DB and closing that connection.
  * 
