@@ -8,7 +8,7 @@ package final221.database;
  * @author Nicholas Hutton
  * @version 1.0 4/30/2019
  */
-public class productBean {
+public class productBean implements java.io.Serializable {
     // declare attributes
     // prduct name
     private String prodName;

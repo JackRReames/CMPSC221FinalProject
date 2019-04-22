@@ -8,7 +8,7 @@ package final221.database;
  * @author Nicholas Hutton
  * @version 1.0 4/30/2019
  */
-public class customerBean {
+public class customerBean implements java.io.Serializable {
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -16,7 +16,7 @@ public class customerBean {
     /**
      * Default constructor for this bean
      */
-    public customerBean() {
+    public void customerBean() {
         firstName = null;
         lastName = null;
         phoneNumber = null;
