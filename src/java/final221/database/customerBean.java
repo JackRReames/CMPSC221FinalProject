@@ -10,8 +10,11 @@ package final221.database;
  */
 public class customerBean implements java.io.Serializable {
     private String firstName;
+    // customer's last name
     private String lastName;
+    // customer's phone number
     private String phoneNumber;
+    // customer's email address
     private String email;
     /**
      * Default constructor for this bean
