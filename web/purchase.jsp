@@ -16,12 +16,13 @@
         
         <%
 
+
                     
         %>
         
         
         <form action="contactList" method="post">
-
+            <input type="hidden" name="action" value="purchase">
             <input type="submit" value="Submit">
         </form>
 

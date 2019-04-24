@@ -6,6 +6,11 @@ import javax.servlet.http.*;
 
 import final221.database.customerBean;
 import final221.database.DBAccessClass;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 
 public class contactListServlet extends HttpServlet {
         
@@ -13,6 +18,7 @@ public class contactListServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, 
                           HttpServletResponse response) 
                           throws ServletException, IOException {
+        
         String url = "/purchase.jsp";
 
 
@@ -23,7 +29,7 @@ public class contactListServlet extends HttpServlet {
         }
 
         // perform action and set URL to appropriate page
-        if (action.equals("join")) {
+        if (action.equals("purchase")) {
             url = "/contact.html";    // the "join" page
         }
         else if (action.equals("add")) {                
@@ -40,6 +46,9 @@ public class contactListServlet extends HttpServlet {
             // set User object in request object and set URL
             request.setAttribute("user", user);
             url = "/thanks.jsp";   // the "thanks" page
+        }
+        else if (action.equals("join")){
+            url = "/purchase.jsp";
         }
         
         // forward request and response objects to specified URL
