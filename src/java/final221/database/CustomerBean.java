@@ -2,8 +2,8 @@ package final221.database;
 
 /**
  * CMPSC 221 Final Program
- CustomerBean.java
- Purpose: Contains attributes and get/set methods associated with a customer.
+ * CustomerBean.java
+ * Purpose: Contains attributes and get/set methods associated with a customer.
  * 
  * @author Nicholas Hutton
  * @version 1.0 4/30/2019
