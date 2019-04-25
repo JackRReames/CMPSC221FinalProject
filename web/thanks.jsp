@@ -13,13 +13,13 @@
     <p>Here is the information that you entered:</p>
 
     <label>First Name:</label>
-    <span>${customerBean.firstName}</span><br>
+    <span>${user.firstName}</span><br>
     <label>Last Name:</label>
-    <span>${customerBean.lastName}</span><br>
+    <span>${user.lastName}</span><br>
     <label>Email:</label>
-    <span>${customerBean.email}</span><br>
+    <span>${user.email}</span><br>
     <label>PhoneNumber:</label>
-    <span>${customerBean.phoneNumber}</span><br>
+    <span>${user.phoneNumber}</span><br>
 
     <p>Click return to return to purchase page</p>
 
