@@ -2,8 +2,8 @@ package final221.database;
 
 /**
  * CMPSC 221 Final Program
- ProductBean.java
- Purpose: Contains attributes and get/set methods associated with a product.
+ * ProductBean.java
+ * Purpose: Contains attributes and get/set methods associated with a product.
  * 
  * @author Nicholas Hutton
  * @version 1.0 4/30/2019
