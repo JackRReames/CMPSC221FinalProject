@@ -62,5 +62,7 @@ public class contactListServlet extends HttpServlet {
                           HttpServletResponse response) 
                           throws ServletException, IOException {
         doPost(request, response);
+       
     }    
 }
+
