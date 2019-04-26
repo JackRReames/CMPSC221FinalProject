@@ -16,7 +16,7 @@ import java.util.*;
  */
 public class DBAccessClass {
     // declare our connection object
-    private Connection connection = null; 
+    protected Connection connection = null; 
     /**
      * Pulls information from a db.properties file and then uses it to connect to the database
      */
