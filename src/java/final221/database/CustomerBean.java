@@ -2,21 +2,24 @@ package final221.database;
 
 /**
  * CMPSC 221 Final Program
- * customerBean.java
+ * CustomerBean.java
  * Purpose: Contains attributes and get/set methods associated with a customer.
  * 
  * @author Nicholas Hutton
  * @version 1.0 4/30/2019
  */
-public class customerBean {
+public class CustomerBean implements java.io.Serializable {
     private String firstName;
+    // customer's last name
     private String lastName;
+    // customer's phone number
     private String phoneNumber;
+    // customer's email address
     private String email;
     /**
      * Default constructor for this bean
      */
-    public customerBean() {
+    public void customerBean() {
         firstName = null;
         lastName = null;
         phoneNumber = null;
@@ -29,7 +32,7 @@ public class customerBean {
      * @param newPhone A phone #
      * @param newEmail An Email address
      */
-    public customerBean(String newFirst, String newLast, String newPhone, String newEmail) {
+    public CustomerBean(String newFirst, String newLast, String newPhone, String newEmail) {
         firstName = newFirst;
         lastName = newLast;
         phoneNumber = newPhone; //who dis??
