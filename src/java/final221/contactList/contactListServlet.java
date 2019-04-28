@@ -22,6 +22,7 @@ public class contactListServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         //get the date when session built
 
+
         
         String url = "/purchase.jsp";
         
@@ -29,12 +30,12 @@ public class contactListServlet extends HttpServlet {
         // get current action
         String action = request.getParameter("action");
         if (action == null) {
-            action = "join";  // default action
+            action = "buy";  // default action
         }
         
 
             if (action.equals("purchase")) {
-                if (session.isNew() == true){ 
+                if (session.isNew()){ 
                     url = "/contact.html";    // the "join" page
                 }
                 else{
@@ -42,7 +43,7 @@ public class contactListServlet extends HttpServlet {
                 }
             }
             else if (action.equals("add")) {                
-                         // get parameters from the request
+                // get parameters from the request
                 String firstName = request.getParameter("firstName");
                 String lastName = request.getParameter("lastName");
                 String phoneNumber = request.getParameter("phoneNumber");
@@ -60,10 +61,19 @@ public class contactListServlet extends HttpServlet {
                 url = "/thanks.jsp";   // the "thanks" page
             
             }
-            else if (action.equals("join")){
-            
+            /*
+                else if (action.equals("join")){
+                
+                session.setMaxInactiveInterval(0);
                 url = "/purchase.jsp";
+                
+            }
+            */
             
+            else if (action.equals("buy")){
+                
+                url = "/purchase.jsp";
+                
             }
  
             // perform action and set URL to appropriate page
