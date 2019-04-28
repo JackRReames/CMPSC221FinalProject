@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,11 +15,13 @@
     <body>
         <h1>product information:</h1>
         
-        <%
+        <label>Product Name:</label>
+        <span>${name}</span>&nbsp;
+        <label>Price:</label>
+        <span>${price}</span>&nbsp;
+        <label>Inv:</label>
+        <span>${Inv}</span>&nbsp;
 
-
-                    
-        %>
         
         
         <form action="contactList" method="post">
