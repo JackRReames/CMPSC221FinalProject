@@ -6,7 +6,7 @@ import javax.servlet.http.*;
 import java.util.Date;
 
 import final221.database.CustomerBean;
-import final221.database.DBAccessClass;
+import final221.database.DBAccess;
 import final221.database.ProductBean;
 import java.util.List;
 import javax.servlet.http.HttpServlet;

@@ -8,7 +8,7 @@ package final221.database;
  * @author Nicholas Hutton
  * @version 1.0 4/30/2019
  */
-public class productBean implements java.io.Serializable {
+public class ProductBean implements java.io.Serializable {
     // declare attributes
     // prduct name
     private String prodName;
@@ -20,7 +20,7 @@ public class productBean implements java.io.Serializable {
     /**
      * Default constructor for this bean
      */
-    public productBean() {
+    public ProductBean() {
         prodName = null;
         prodPrice = 0;
         prodInventory = 0;
@@ -32,7 +32,7 @@ public class productBean implements java.io.Serializable {
      * @param price A product price
      * @param inv An amount of a product in the inventory
      */
-    public productBean(String name, double price, int inv) {
+    public ProductBean(String name, double price, int inv) {
         prodName = name;
         prodPrice = price;
         prodInventory = inv;

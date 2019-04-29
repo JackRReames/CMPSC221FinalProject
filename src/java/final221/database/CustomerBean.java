@@ -16,10 +16,13 @@ public class CustomerBean implements java.io.Serializable {
     private String phoneNumber;
     // customer's email address
     private String email;
+    // customer id number
+    private int id;
     /**
      * Default constructor for this bean
      */
     public void customerBean() {
+        id = 0;
         firstName = null;
         lastName = null;
         phoneNumber = null;
@@ -37,6 +40,7 @@ public class CustomerBean implements java.io.Serializable {
         lastName = newLast;
         phoneNumber = newPhone; //who dis??
         email = newEmail;
+        id = 0;
     }
     
     // set methods

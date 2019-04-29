@@ -116,7 +116,7 @@ public class DBAccess {
                resultSet.getString( "newPhone" ),
                resultSet.getString( "newEmail" ) ) );
          } // end while
-      } // end try
+      } // end try // end try
       catch ( SQLException sqlException )
       {
          sqlException.printStackTrace();         
@@ -160,7 +160,7 @@ public class DBAccess {
                resultSet.getString( "newPhone" ),
                resultSet.getString( "newEmail" ) ) );
          } // end while
-      } // end try
+      } // end try // end try
       catch ( SQLException sqlException )
       {
          sqlException.printStackTrace();
