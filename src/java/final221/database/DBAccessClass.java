@@ -20,7 +20,7 @@ public class DBAccessClass {
     /**
      * Pulls information from a db.properties file and then uses it to connect to the database
      */
-    public DBAccessClass()
+    public void DBAccessClass()
     {
         // variables to hold the required db connection info
         String driver = null;
