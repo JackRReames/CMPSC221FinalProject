@@ -5,8 +5,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.util.Date;
 
-import final221.database.customerBean;
+import final221.database.CustomerBean;
 import final221.database.DBAccessClass;
+import final221.database.ProductBean;
+import java.util.List;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,7 +52,7 @@ public class contactListServlet extends HttpServlet {
                 String email = request.getParameter("email");
 
                 // store data in User object and save User object in database
-                customerBean user = new customerBean(firstName, lastName,phoneNumber, email);
+                CustomerBean user = new CustomerBean(firstName, lastName,phoneNumber, email);
 
                 // UserDB.insert(user);
             
@@ -72,6 +74,10 @@ public class contactListServlet extends HttpServlet {
             
             else if (action.equals("buy")){
                 
+                List< ProductBean > list = (List)request.getAttribute("list");
+
+                
+                request.setAttribute("list", list);
                 url = "/purchase.jsp";
                 
             }

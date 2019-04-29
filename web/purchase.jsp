@@ -4,8 +4,13 @@
     Author     : tzjsl
 --%>
 
+<%@page import="java.sql.ResultSetMetaData"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="final221.database.DBAccessClass"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,14 +20,48 @@
     <body>
         <h1>product information:</h1>
         
-        <label>Product Name:</label>
-        <span>${name}</span>&nbsp;
-        <label>Price:</label>
-        <span>${price}</span>&nbsp;
-        <label>Inv:</label>
-        <span>${Inv}</span>&nbsp;
+        <%
+            String driver = null;
+            String url = null;
+            String user = null;
+            String password = null;
+            DBAccessClass product = new DBAccessClass();
+            product.DBAccessClass();
+            
+            try
+            {
+                Connection con = DriverManager.getConnection(url,user,password);  
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM PRODUCTS ORDER BY ID");
 
-        
+                ResultSetMetaData rsmd = rs.getMetaData();
+
+                int numberOfColumns = rsmd.getColumnCount();
+
+                while (rs.next())
+                {
+                for (int i = 1; i <= numberOfColumns; i++)
+                    {
+                    System.out.print(rs.getString(i) + " ");
+                    }
+
+
+                System.out.println("");
+               
+                }
+
+            stmt.close();
+
+            con.close();
+        }
+        catch (Exception e) 
+        {
+            System.out.println(e);
+        }
+
+
+
+        %>
         
         <form action="contactList" method="post">
             <input type="hidden" name="action" value="purchase">
