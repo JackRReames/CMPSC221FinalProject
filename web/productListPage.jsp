@@ -42,6 +42,7 @@
             %>    
         </table>
         <form action="contactList" method ="post">
+            <input type="hidden" name="action" value="purchase">
             Product ID: 
             <input type="number" min="1" name="prodID" required>
             Quantity:
