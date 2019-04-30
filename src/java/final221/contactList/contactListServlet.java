@@ -1,18 +1,26 @@
+/**
+ * CMPSC 221 Final Program
+ * CustomerBean.java
+ * Purpose: The controller in MVC architecture. Deals with sending the user to
+ * views and using the model classes.
+ * 
+ * @author Nicholas Hutton
+ * @author Yuxin Liu
+ * @version 1.3 4/30/2019
+ */
 package final221.contactList;
 
 import java.io.*;
 import javax.servlet.*;
-import javax.servlet.http.*;
 import java.util.Date;
 
 import final221.database.CustomerBean;
 import final221.database.ProductBean;
+import final221.database.OrderBean;
 import final221.database.TableAccess;
-import java.util.List;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class contactListServlet extends HttpServlet {
         
@@ -20,12 +28,7 @@ public class contactListServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, 
                           HttpServletResponse response) 
                           throws ServletException, IOException {
-        //if session do not exist, create a session object
-//        HttpSession session = request.getSession(true);
-        //get the date when session built
 
-
-        
         String url = "/productListPage.jsp";
         
 
@@ -35,57 +38,50 @@ public class contactListServlet extends HttpServlet {
         if (action == null) {
             action = "buy";  // default action
         }
-        
 
+        // get the action from the order page, grab its attributes, and try to do some stuff in the db. Then try to send the user to the thanks page
         if (action.equals("purchase")) {
-            
-//                if (session.isNew()){ 
-            url = "/contact.html";    // the "join" page
-//                }
-//                else{
-//                    url = "/thanks.jsp";
-//                }
-//            } else if (action.equals("add")) {
-//                url = "/thanks.jsp";
-        } else if (action.equals("add")) {                
-            // get parameters from the request
+            String numPurchased = request.getParameter("quantity");
+            String prodID = request.getParameter("prodID");
+            request.setAttribute("quantity", numPurchased);
+            request.setAttribute("prodID", prodID);
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
             String phoneNumber = request.getParameter("phoneNumber");
             String email = request.getParameter("email");
             int id = 0;
+            // make Integer versions of the quantity and product ID for the product table update function
+            Integer numBought = new Integer(numPurchased);
+            Integer productID = new Integer(prodID);
 
             // store data in User object and save User object in database
             CustomerBean user = new CustomerBean(id, firstName, lastName, phoneNumber, email);
             TableAccess userDB = new  TableAccess();
             userDB.customerInsert(user);
+            // product table update function. doesnt work
+            userDB.productSale(numBought, productID);
+            // get everything ready for making an order object
+            user = userDB.customerSearch(lastName);
+            ProductBean product = userDB.productSearch(prodID);
+            Date date = new Date();
+            // attempt to make an order object
+            OrderBean order = new OrderBean(0, date.getTime(), user, product, numBought);
+            // causes server error, NullPointerException
+            //  userDB.orderInsert(order);
 
-            // set User object in request object and set URL
+            // set User object, quantity, and product id in request object and set URL
             request.setAttribute("user", user);
-//                session.setAttribute("user", user);
+            request.setAttribute("number", numPurchased);
+            request.setAttribute("prodID", prodID);
 
             url = "/thanks.jsp";   // the "thanks" page
-        }
-            
-            /*
-                else if (action.equals("join")){
-                
-                session.setMaxInactiveInterval(0);
-                url = "/purchase.jsp";
-                
-            }
-            */
-            
-            else if (action.equals("buy")){
+
+
+        } else if (action.equals("buy")){
                 
                 url = "/productListPage.jsp";
                 
             }
- 
-            // perform action and set URL to appropriate page
-       
-        
-  
         
         // forward request and response objects to specified URL
         getServletContext()

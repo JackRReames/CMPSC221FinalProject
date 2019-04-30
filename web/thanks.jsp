@@ -1,10 +1,15 @@
+<%-- 
+    Document   : thanks
+    Created on : Apr 29, 2019, 4:50:51 PM
+    Author     : Nicholas Hutton
+--%>
 <%@page contentType="text/html" pageEncoding="utf-8"%>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Murach's Java Servlets and JSP</title>
+    <title>Thanks!</title>
     <link rel="stylesheet" href="styles/main.css" type="text/css"/>    
 </head>
 
@@ -20,7 +25,9 @@
     <label>Email:</label>
     <span>${user.email}</span><br>
     <label>Phone Number:</label>
-    <span>${user.phoneNumber}</span><br>
+    <span>${user.phoneNumber}</span><br><br>
+    <label>Quantity Purchased:</label>
+    <span>${number}</span><br>
 
     <p>Click return to return to purchase page</p>
 
