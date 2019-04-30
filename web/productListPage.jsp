@@ -46,7 +46,7 @@
             <input type="number" min="1" name="prodID" required>
             Quantity:
             <input type="number" min="1" name="quantity" required>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" action="purchase">
         </form>
     </body>
 </html>
