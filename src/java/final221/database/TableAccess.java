@@ -31,6 +31,7 @@ public class TableAccess {
     private int customerCurrentID;
     private int productCurrentID;
     
+    
     public TableAccess () {
         try {
             ResourceBundle properties;
@@ -86,9 +87,9 @@ public class TableAccess {
             System.exit(1);
         } finally {
             try {
+                resultSet.close();
                 select.close();
                 con.close();
-                resultSet.close();
             } catch (SQLException e) {
                 e.getMessage();
                 System.out.println(e);
@@ -118,15 +119,6 @@ public class TableAccess {
             e.getMessage();
             System.out.println(e);
             System.exit(1);
-        } finally {
-            try {
-                select.close();
-                con.close();
-            } catch(SQLException e) {
-                e.getMessage();
-                System.out.println(e);
-                System.exit(1);
-            }
         }
         
         try {
@@ -150,6 +142,8 @@ public class TableAccess {
         } finally {
             try {
                 resultSet.close();
+                select.close();
+                con.close();
             } catch (SQLException e) {
                 e.getMessage();
                 System.out.println(e);
@@ -179,15 +173,6 @@ public class TableAccess {
             e.getMessage();
             System.out.println(e);
             System.exit(1);
-        } finally {
-            try {
-                select.close();
-                con.close();
-            } catch(SQLException e) {
-                e.getMessage();
-                System.out.println(e);
-                System.exit(1);
-            }
         }
         
         try {
@@ -211,6 +196,8 @@ public class TableAccess {
         } finally {
             try {
                 resultSet.close();
+                select.close();
+                con.close();
             } catch (SQLException e) {
                 e.getMessage();
                 System.out.println(e);
