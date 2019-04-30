@@ -20,7 +20,7 @@
         }
     </style>
     <body>
-        <h1>Welcome to Dundear Mifflin Altoona's Web Store</h1>
+        <h1>Welcome to Dunder Mifflin Altoona's Web Store</h1>
         <table style="width:100%">
             <tr>
                 <th>Product Name</th>
