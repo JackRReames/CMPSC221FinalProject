@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
@@ -50,15 +49,19 @@ public class TableAccess {
             System.exit(-1);
         }
         
-        orderCurrentID = orderMaxID();
-        customerCurrentID = customerMaxID();
-        productCurrentID = productMaxID();
+        orderCurrentID = orderMaxID() + 1;
+        customerCurrentID = customerMaxID() + 1;
+        productCurrentID = productMaxID() + 1;
     }
     
     
     //<editor-fold defaultstate="collapsed" desc="Methods for Orders Table">
     
-    private int orderMaxID() {
+    /**
+     * Finds the last used ID number in Orders
+     * @return - an integer, the ID
+     */
+    public int orderMaxID() {
         int id = 0;
         
         try {
@@ -93,10 +96,15 @@ public class TableAccess {
             }
         }
         
-        return id + 1;
+        return id;
     }
     
-    private OrderBean orderSearch(int id) {
+    /**
+     * Searches the Orders table by id
+     * @param id - the ID of the order being searched for
+     * @return - an OrderBean object containing the order in question
+     */
+    public OrderBean orderSearch(int id) {
         OrderBean order = null;
         int prodID, custID;
         
@@ -152,6 +160,12 @@ public class TableAccess {
         return order;
     }
     
+    /**
+     * Searches the Orders table by a person's last name, and a product name
+     * @param lName - the last name of a customer
+     * @param prodName - the name of a product
+     * @return - an OrderBean object
+     */
     public OrderBean orderSearch(String lName, String prodName) {
         OrderBean order = null;
         int custID, prodID;
@@ -207,6 +221,11 @@ public class TableAccess {
         return order;
     }
     
+    /**
+     * Inserts a new order into the table
+     * @param order - the order to be inserted
+     * @return - a boolean indicating success or failure
+     */
     public boolean orderInsert(OrderBean order) {
         if (orderSearch(order.getID()) != null) {
             return false;
@@ -250,6 +269,11 @@ public class TableAccess {
         }
     }
     
+    /**
+     * Deletes an order from the table
+     * @param order - the order to be deleted
+     * @return - a boolean indicating success or failure
+     */
     public boolean orderDelete(OrderBean order) {
         if (orderSearch(order.getID()) == null) {
             return false;
@@ -289,7 +313,11 @@ public class TableAccess {
     
     //<editor-fold defaultstate="collapsed" desc="Methods for Customer Table">
     
-    private int customerMaxID() {
+    /**
+     * Finds the last user ID in Customers
+     * @return - an integer, the ID
+     */
+    public int customerMaxID() {
         int id = 0;
         
         try {
@@ -321,10 +349,15 @@ public class TableAccess {
             }
         }
         
-        return id + 1;
+        return id;
     }
     
-    private CustomerBean customerSearch(int id) {
+    /**
+     * Searches the Customer table by Customer ID
+     * @param id - the ID of the customer
+     * @return - a CustomerBean object containing the customer's information
+     */
+    public CustomerBean customerSearch(int id) {
         CustomerBean customer = null;
         
         try {
@@ -366,7 +399,12 @@ public class TableAccess {
         return customer;
     }
     
-    private int customerIDSearch(String lName) {
+    /**
+     * Searches the Customer table by Last Name
+     * @param lName - the Last Name of the customer
+     * @return - the ID of the customer
+     */
+    public int customerIDSearch(String lName) {
         int id = 0;
         
         try {
@@ -403,6 +441,11 @@ public class TableAccess {
         return id;
     }
     
+    /**
+     * Searches the Customer table by Last Name
+     * @param lName - the LAst Name of the customer
+     * @return - the ID of the customer
+     */
     public CustomerBean customerSearch(String lName) {
         CustomerBean customer = null;
         
@@ -445,6 +488,11 @@ public class TableAccess {
         return customer;
     }
     
+    /**
+     * Inserts a new customer into the Customers table
+     * @param customer - a CustomerBean object to be inserted
+     * @return - a boolean indicating success or failure
+     */
     public boolean customerInsert(CustomerBean customer) {
         if (customerSearch(customer.getID()) != null) {
             return false;
@@ -486,6 +534,11 @@ public class TableAccess {
         }
     }
     
+    /**
+     * Deletes a customer from the Customers table
+     * @param customer - a CustomerBean object to be removed
+     * @return - a boolean indicating success or failure
+     */
     public boolean customerDelete(CustomerBean customer) {
         if (customerSearch(customer.getID()) == null) {
             return false;
@@ -523,7 +576,11 @@ public class TableAccess {
     
     //<editor-fold defaultstate="collapsed" desc="Methods for Product Table">
     
-    private int productMaxID() {
+    /**
+     * Finds the last ID in the Products table
+     * @return - an integer, the ID
+     */
+    public int productMaxID() {
         int id = 0;
         
         try {
@@ -558,7 +615,12 @@ public class TableAccess {
         return id + 1;
     }
     
-    private ProductBean productSearch(int id) {
+    /**
+     * Searches the Products table by Product ID
+     * @param id - the ID of the Product
+     * @return - a ProductBean containing the product's information
+     */
+    public ProductBean productSearch(int id) {
         ProductBean product = null;
         
         try {
@@ -599,7 +661,12 @@ public class TableAccess {
         return product;
     }
     
-    private int productIDSearch(String prodName) {
+    /**
+     * Searches the Products table by Product Name
+     * @param prodName - the Name of the Product
+     * @return - an integer, the ID of the product
+     */
+    public int productIDSearch(String prodName) {
         int id = 0;
         
         try {
@@ -636,6 +703,11 @@ public class TableAccess {
         return id;
     }
     
+    /**
+     * Searches the Products table by Product Name
+     * @param prodName - the Name of the Product
+     * @return - a ProductBean object containing the product's information
+     */
     public ProductBean productSearch(String prodName) {
         ProductBean product = null;
         
@@ -677,6 +749,10 @@ public class TableAccess {
         return product;
     }
     
+    /**
+     * Returns a list of all products
+     * @return - an ArrayList, containing every product
+     */
     public ArrayList<ProductBean> getProductList() {
         ArrayList<ProductBean> results = new ArrayList();
         
@@ -719,6 +795,11 @@ public class TableAccess {
         return results;
     }
     
+    /**
+     * Inserts a new Product into the Products table
+     * @param product - the product to be added
+     * @return - a boolean indicating success or failure
+     */
     public boolean productInsert(ProductBean product) {
         if (productSearch(product.getID()) != null) {
             return false;
@@ -758,6 +839,11 @@ public class TableAccess {
         }
     }
     
+    /**
+     * Deletes a Product from the Products table
+     * @param product - the product to be deleted
+     * @return - a boolean indicating success or failure
+     */
     public boolean productDelete(ProductBean product) {
         if (productSearch(product.getID()) == null) {
             return false;
@@ -790,6 +876,12 @@ public class TableAccess {
         }
     }
     
+    /**
+     * Reduces the amount of a product in inventory by the given amount
+     * @param amountSold - the amount sold
+     * @param id - the ID of the Product
+     * @return - a boolean indicating success or failure
+     */
     public boolean productSale(int amountSold, int id) {
         ProductBean prod = productSearch(id);
         
