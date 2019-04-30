@@ -8,6 +8,7 @@ import java.util.Date;
 import final221.database.CustomerBean;
 import final221.database.DBAccess;
 import final221.database.ProductBean;
+import final221.database.TableAccess;
 import java.util.List;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,7 @@ public class contactListServlet extends HttpServlet {
 
         // get current action
         String action = request.getParameter("action");
+        
         if (action == null) {
             action = "buy";  // default action
         }
@@ -50,11 +52,12 @@ public class contactListServlet extends HttpServlet {
                 String lastName = request.getParameter("lastName");
                 String phoneNumber = request.getParameter("phoneNumber");
                 String email = request.getParameter("email");
+                Integer id = null;
 
                 // store data in User object and save User object in database
-                CustomerBean user = new CustomerBean(firstName, lastName,phoneNumber, email);
-
-                // UserDB.insert(user);
+                CustomerBean user = new CustomerBean(id, firstName, lastName,phoneNumber, email);
+                TableAccess userDB = new  TableAccess();
+                userDB.customerInsert(user);
             
                 // set User object in request object and set URL
                 request.setAttribute("user", user);
@@ -63,6 +66,7 @@ public class contactListServlet extends HttpServlet {
                 url = "/thanks.jsp";   // the "thanks" page
             
             }
+            
             /*
                 else if (action.equals("join")){
                 
@@ -74,11 +78,7 @@ public class contactListServlet extends HttpServlet {
             
             else if (action.equals("buy")){
                 
-                List< ProductBean > list = (List)request.getAttribute("list");
-
-                
-                request.setAttribute("list", list);
-                url = "/purchase.jsp";
+                url = "/productListPage.jsp";
                 
             }
  
