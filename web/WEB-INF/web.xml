@@ -5,7 +5,7 @@
                         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>contactListServlet</servlet-name>
-        <servlet-class>contactList/contactListServlet</servlet-class>
+        <servlet-class>final221.contactList.contactListServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>contactListServlet</servlet-name>
