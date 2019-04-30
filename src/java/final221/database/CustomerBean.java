@@ -1,3 +1,4 @@
+
 package final221.database;
 
 /**
@@ -6,6 +7,7 @@ package final221.database;
  * Purpose: Contains attributes and get/set methods associated with a customer.
  * 
  * @author Nicholas Hutton
+ * @author Jack R. Reames
  * @version 1.0 4/30/2019
  */
 public class CustomerBean implements java.io.Serializable {
@@ -18,24 +20,28 @@ public class CustomerBean implements java.io.Serializable {
     private String email;
     // customer id number
     private int id;
+    
     /**
      * Default constructor for this bean
      */
-    public void customerBean() {
+    public CustomerBean() {
         id = 0;
         firstName = null;
         lastName = null;
         phoneNumber = null;
         email = null;
     }
+    
     /**
      * Regular constructor for this bean
+     * @param id
      * @param newFirst A first name
      * @param newLast A last name
      * @param newPhone A phone #
      * @param newEmail An Email address
      */
-    public CustomerBean(String newFirst, String newLast, String newPhone, String newEmail) {
+    public CustomerBean(int id, String newFirst, String newLast, String newPhone, String newEmail) {
+        this.id = id;
         firstName = newFirst;
         lastName = newLast;
         phoneNumber = newPhone; //who dis??
@@ -44,6 +50,16 @@ public class CustomerBean implements java.io.Serializable {
     }
     
     // set methods
+    
+    /**
+     * Assigns an ID to the object
+     * 
+     * @param id - the new ID number
+     */
+    public void setID(int id) {
+        this.id = id;
+    }
+    
     /**
      * Assigns a first name to the object
      * @param newFirst A first name
@@ -74,6 +90,11 @@ public class CustomerBean implements java.io.Serializable {
     }
     
     // get methods
+    
+    public int getID() {
+        return id;
+    }
+    
     /**
      * Retrieves a first name
      * @return A String containing a first name
