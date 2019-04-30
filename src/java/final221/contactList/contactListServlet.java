@@ -66,14 +66,6 @@ public class contactListServlet extends HttpServlet {
             
             }
             
-            /*
-                else if (action.equals("join")){
-                
-                session.setMaxInactiveInterval(0);
-                url = "/purchase.jsp";
-                
-            }
-            */
             
             else if (action.equals("buy")){
                 
