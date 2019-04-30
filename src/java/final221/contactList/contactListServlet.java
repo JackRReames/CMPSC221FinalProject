@@ -6,7 +6,6 @@ import javax.servlet.http.*;
 import java.util.Date;
 
 import final221.database.CustomerBean;
-import final221.database.DBAccess;
 import final221.database.ProductBean;
 import final221.database.TableAccess;
 import java.util.List;
@@ -27,7 +26,7 @@ public class contactListServlet extends HttpServlet {
 
 
         
-        String url = "/purchase.jsp";
+        String url = "/productListPage.jsp";
         
 
         // get current action
