@@ -673,7 +673,7 @@ public class DBFrameClass extends javax.swing.JFrame {
       {
          currentEntryIndex = 0;
          currentEntry = results.get( currentEntryIndex );
-          IDNumberTextField.setText("" + currentEntry.getCustomerID() );
+          IDNumberTextField.setText("" + currentEntry.getID() );
          FirstNameTextField.setText( currentEntry.getFirstName() );
          LastNameTextField.setText( currentEntry.getLastName() );
          EmailTextField.setText( currentEntry.getEmail() );
@@ -714,7 +714,7 @@ public class DBFrameClass extends javax.swing.JFrame {
          {
             currentEntryIndex = 0;
             currentEntry = results.get( currentEntryIndex );
-             IDNumberTextField.setText("" + currentEntry.getCustomerID() );
+             IDNumberTextField.setText("" + currentEntry.getID() );
             FirstNameTextField.setText( currentEntry.getFirstName() );
             LastNameTextField.setText( currentEntry.getLastName() );
             EmailTextField.setText( currentEntry.getEmail() );
@@ -768,8 +768,8 @@ public class DBFrameClass extends javax.swing.JFrame {
             currentEntry2 = results2.get( currentEntryIndex2 );
              ProductIDTextField.setText("" + currentEntry2.getID() );
             ProductNameTextField.setText( currentEntry2.getProdName() );
-            ProductPriceTextField.setText( currentEntry2.getProdPrice() );
-            AmountTextField.setText( currentEntry2.getProdInventory() );
+            ProductPriceTextField.setText( Double.toString(currentEntry2.getProdPrice()));
+            AmountTextField.setText( Double.toString(currentEntry2.getProdInventory()));
             max2TextField.setText( "" + numberOfEntries2 );
             index2TextField.setText( "" + ( currentEntryIndex2 + 1 ) );
             NextProductButton.setEnabled( true );
@@ -942,8 +942,8 @@ public class DBFrameClass extends javax.swing.JFrame {
       {
          currentEntry2 = results2.get( currentEntryIndex2 );
          ProductNameTextField.setText( currentEntry2.getProdName() );
-         ProductPriceTextField.setText( currentEntry2.getProdPrice() );
-         AmountTextField.setText( currentEntry2.getProdInventory() );
+         ProductPriceTextField.setText( Double.toString(currentEntry2.getProdPrice()));
+         AmountTextField.setText(Double.toString(currentEntry2.getProdInventory()) );
          index2TextField.setText( "" + ( currentEntryIndex2 + 1 ) );
       } // end if
     } // end method indexTextFieldActionPerformed
