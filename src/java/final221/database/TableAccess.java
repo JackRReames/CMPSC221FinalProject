@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
@@ -40,7 +41,7 @@ public class TableAccess {
             inStrm.close();
             
             url = properties.getString("jdbc.url");
-            user = properties.getString("jdbc.username");
+            user = properties.getString("jdbc.user");
             password = properties.getString("jdbc.password");
         }
         catch(Exception e) {
@@ -67,15 +68,8 @@ public class TableAccess {
             resultSet = select.executeQuery();
         } catch(SQLException e) {
             e.getMessage();
+            System.out.println(e);
             System.exit(1);
-        } finally {
-            try {
-                select.close();
-                con.close();
-            } catch(SQLException e) {
-                e.getMessage();
-                System.exit(1);
-            }
         }
         
         try {
@@ -84,12 +78,16 @@ public class TableAccess {
             }
         } catch (SQLException e) {
             e.getMessage();
+            System.out.println(e);
             System.exit(1);
         } finally {
             try {
+                select.close();
+                con.close();
                 resultSet.close();
             } catch (SQLException e) {
                 e.getMessage();
+                System.out.println(e);
                 System.exit(1);
             }
         }
@@ -109,6 +107,7 @@ public class TableAccess {
             resultSet = select.executeQuery();
         } catch(SQLException e) {
             e.getMessage();
+            System.out.println(e);
             System.exit(1);
         } finally {
             try {
@@ -116,6 +115,7 @@ public class TableAccess {
                 con.close();
             } catch(SQLException e) {
                 e.getMessage();
+                System.out.println(e);
                 System.exit(1);
             }
         }
@@ -136,12 +136,14 @@ public class TableAccess {
             }
         } catch (SQLException e) {
             e.getMessage();
+            System.out.println(e);
             System.exit(1);
         } finally {
             try {
                 resultSet.close();
             } catch (SQLException e) {
                 e.getMessage();
+                System.out.println(e);
                 System.exit(1);
             }
         }
@@ -160,6 +162,7 @@ public class TableAccess {
             resultSet = select.executeQuery();
         } catch(SQLException e) {
             e.getMessage();
+            System.out.println(e);
             System.exit(1);
         } finally {
             try {
@@ -167,6 +170,7 @@ public class TableAccess {
                 con.close();
             } catch(SQLException e) {
                 e.getMessage();
+                System.out.println(e);
                 System.exit(1);
             }
         }
@@ -187,12 +191,14 @@ public class TableAccess {
             }
         } catch (SQLException e) {
             e.getMessage();
+            System.out.println(e);
             System.exit(1);
         } finally {
             try {
                 resultSet.close();
             } catch (SQLException e) {
                 e.getMessage();
+                System.out.println(e);
                 System.exit(1);
             }
         }
@@ -229,6 +235,7 @@ public class TableAccess {
             return true;
         } catch(SQLException e) {
             e.getMessage();
+            System.out.println(e);
             return false;
         } finally {
             try {
@@ -236,7 +243,8 @@ public class TableAccess {
                 con.close();
             } catch(SQLException e) {
                 e.getMessage();
-                System.exit(-1);
+                System.out.println(e);
+                System.exit(1);
             }
         }
     }
@@ -261,6 +269,7 @@ public class TableAccess {
             return true;
         } catch(SQLException e) {
             e.getMessage();
+            System.out.println(e);
             return false;
         } finally {
             try {
@@ -268,7 +277,8 @@ public class TableAccess {
                 con.close();
             } catch(SQLException e) {
                 e.getMessage();
-                System.exit(-1);
+                System.out.println(e);
+                System.exit(1);
             }
         }
     }
@@ -290,14 +300,6 @@ public class TableAccess {
         } catch(SQLException e) {
             e.getMessage();
             System.exit(1);
-        } finally {
-            try {
-                select.close();
-                con.close();
-            } catch(SQLException e) {
-                e.getMessage();
-                System.exit(1);
-            }
         }
         
         try {
@@ -310,6 +312,8 @@ public class TableAccess {
         } finally {
             try {
                 resultSet.close();
+                select.close();
+                con.close();
             } catch (SQLException e) {
                 e.getMessage();
                 System.exit(1);
@@ -331,14 +335,6 @@ public class TableAccess {
         } catch(SQLException e) {
             e.getMessage();
             System.exit(1);
-        } finally {
-            try {
-                select.close();
-                con.close();
-            } catch(SQLException e) {
-                e.getMessage();
-                System.exit(1);
-            }
         }
         
         try {
@@ -358,6 +354,8 @@ public class TableAccess {
         } finally {
             try {
                 resultSet.close();
+                select.close();
+                con.close();
             } catch (SQLException e) {
                 e.getMessage();
                 System.exit(1);
@@ -379,14 +377,6 @@ public class TableAccess {
         } catch(SQLException e) {
             e.getMessage();
             System.exit(1);
-        } finally {
-            try {
-                select.close();
-                con.close();
-            } catch(SQLException e) {
-                e.getMessage();
-                System.exit(1);
-            }
         }
         
         try {
@@ -401,6 +391,8 @@ public class TableAccess {
         } finally {
             try {
                 resultSet.close();
+                select.close();
+                con.close();
             } catch (SQLException e) {
                 e.getMessage();
                 System.exit(1);
@@ -422,14 +414,6 @@ public class TableAccess {
         } catch(SQLException e) {
             e.getMessage();
             System.exit(1);
-        } finally {
-            try {
-                select.close();
-                con.close();
-            } catch(SQLException e) {
-                e.getMessage();
-                System.exit(1);
-            }
         }
         
         try {
@@ -449,6 +433,8 @@ public class TableAccess {
         } finally {
             try {
                 resultSet.close();
+                select.close();
+                con.close();
             } catch (SQLException e) {
                 e.getMessage();
                 System.exit(1);
@@ -548,14 +534,6 @@ public class TableAccess {
         } catch(SQLException e) {
             e.getMessage();
             System.exit(1);
-        } finally {
-            try {
-                select.close();
-                con.close();
-            } catch(SQLException e) {
-                e.getMessage();
-                System.exit(1);
-            }
         }
         
         try {
@@ -568,6 +546,8 @@ public class TableAccess {
         } finally {
             try {
                 resultSet.close();
+                select.close();
+                con.close();
             } catch (SQLException e) {
                 e.getMessage();
                 System.exit(1);
@@ -589,14 +569,6 @@ public class TableAccess {
         } catch(SQLException e) {
             e.getMessage();
             System.exit(1);
-        } finally {
-            try {
-                select.close();
-                con.close();
-            } catch(SQLException e) {
-                e.getMessage();
-                System.exit(1);
-            }
         }
         
         try {
@@ -615,6 +587,8 @@ public class TableAccess {
         } finally {
             try {
                 resultSet.close();
+                select.close();
+                con.close();
             } catch (SQLException e) {
                 e.getMessage();
                 System.exit(1);
@@ -636,14 +610,6 @@ public class TableAccess {
         } catch(SQLException e) {
             e.getMessage();
             System.exit(1);
-        } finally {
-            try {
-                select.close();
-                con.close();
-            } catch(SQLException e) {
-                e.getMessage();
-                System.exit(1);
-            }
         }
         
         try {
@@ -658,6 +624,8 @@ public class TableAccess {
         } finally {
             try {
                 resultSet.close();
+                select.close();
+                con.close();
             } catch (SQLException e) {
                 e.getMessage();
                 System.exit(1);
@@ -679,14 +647,6 @@ public class TableAccess {
         } catch(SQLException e) {
             e.getMessage();
             System.exit(1);
-        } finally {
-            try {
-                select.close();
-                con.close();
-            } catch(SQLException e) {
-                e.getMessage();
-                System.exit(1);
-            }
         }
         
         try {
@@ -705,6 +665,8 @@ public class TableAccess {
         } finally {
             try {
                 resultSet.close();
+                select.close();
+                con.close();
             } catch (SQLException e) {
                 e.getMessage();
                 System.exit(1);
@@ -714,7 +676,9 @@ public class TableAccess {
         return product;
     }
     
-    public ResultSet getProductList() {
+    public ArrayList<ProductBean> getProductList() {
+        ArrayList<ProductBean> results = new ArrayList();
+        
         try {
             con = DriverManager.getConnection(url, user, password);
             
@@ -723,18 +687,35 @@ public class TableAccess {
             resultSet = select.executeQuery();
         } catch(SQLException e) {
             e.getMessage();
+            System.out.println(e);
+            return null;
+        }
+        
+        try {
+            while(resultSet.next()) {
+                results.add(new ProductBean(
+                    resultSet.getInt("ID"),
+                    resultSet.getString("PRODNAME"),
+                    resultSet.getDouble("PRICE"),
+                    resultSet.getInt("INVENTORY")));
+            }
+        } catch (SQLException e) {
+            e.getMessage();
+            System.out.println(e);
             System.exit(1);
         } finally {
             try {
+                resultSet.close();
                 select.close();
                 con.close();
             } catch(SQLException e) {
                 e.getMessage();
+                System.out.println(e);
                 System.exit(1);
             }
         }
         
-        return resultSet;
+        return results;
     }
     
     public boolean productInsert(ProductBean product) {
