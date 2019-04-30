@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
@@ -92,7 +93,7 @@ public class TableAccess {
             }
         }
         
-        return id;
+        return id + 1;
     }
     
     private OrderBean orderSearch(int id) {
@@ -207,7 +208,7 @@ public class TableAccess {
     }
     
     public boolean orderInsert(OrderBean order) {
-        if (orderSearch(order.getID()) == null) {
+        if (orderSearch(order.getID()) != null) {
             return false;
         }
         
@@ -320,7 +321,7 @@ public class TableAccess {
             }
         }
         
-        return id;
+        return id + 1;
     }
     
     private CustomerBean customerSearch(int id) {
@@ -445,7 +446,7 @@ public class TableAccess {
     }
     
     public boolean customerInsert(CustomerBean customer) {
-        if (customerSearch(customer.getID()) == null) {
+        if (customerSearch(customer.getID()) != null) {
             return false;
         }
         
@@ -554,7 +555,7 @@ public class TableAccess {
             }
         }
         
-        return id;
+        return id + 1;
     }
     
     private ProductBean productSearch(int id) {
@@ -719,7 +720,7 @@ public class TableAccess {
     }
     
     public boolean productInsert(ProductBean product) {
-        if (productSearch(product.getID()) == null) {
+        if (productSearch(product.getID()) != null) {
             return false;
         }
         
@@ -758,7 +759,7 @@ public class TableAccess {
     }
     
     public boolean productDelete(ProductBean product) {
-        if (customerSearch(product.getID()) == null) {
+        if (productSearch(product.getID()) == null) {
             return false;
         }
         
@@ -781,6 +782,40 @@ public class TableAccess {
         } finally {
             try {
                 delete.close();
+                con.close();
+            } catch(SQLException e) {
+                e.getMessage();
+                System.exit(-1);
+            }
+        }
+    }
+    
+    public boolean productSale(int amountSold, int id) {
+        ProductBean prod = productSearch(id);
+        
+        if (prod == null) {
+            return false;
+        }
+        
+        try {
+            con = DriverManager.getConnection(url, user, password);
+            
+            insert = con.prepareStatement("UPDATE PRODUCTS" +
+                    "SET AMOUNT=?" +
+                    "WHERE ID=?");
+            
+            insert.setInt(1, prod.getProdInventory() - amountSold);
+            insert.setInt(2, id);
+            
+            insert.execute();
+            
+            return true;
+        } catch(SQLException e) {
+            e.getMessage();
+            return false;
+        } finally {
+            try {
+                insert.close();
                 con.close();
             } catch(SQLException e) {
                 e.getMessage();
