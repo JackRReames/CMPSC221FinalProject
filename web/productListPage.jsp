@@ -3,7 +3,9 @@
     Created on : Apr 29, 2019, 4:08:50 PM
     Author     : Nicholas
 --%>
-
+<%@page import="java.util.ArrayList"%>
+<%@page import="final221.database.TableAccess"%>
+<%@page import="final221.database.ProductBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,14 +28,14 @@
                 <th>Price</th>
             </tr>
             <%
-            
-            
-                while(resultSet.next()) {
+                TableAccess DBAccess = new TableAccess();
+                ArrayList<ProductBean> dbData = DBAccess.getProductList();
+                for (int i = 0; i < dbData.size(); i++) {
             %>
             <tr>
-                <td> <%= resultSet.getString(2) %> </td>
-                <td> <%= resultSet.getString(3) %> </td>
-                <td> <%= resultSet.getString(1) %> </td>
+                <td> <%= dbData.get(i).getProdName() %> </td>
+                <td> <%= dbData.get(i).getID() %> </td>
+                <td> <%= dbData.get(i).getProdPrice() %> </td>
             </tr>
             <%
                }
@@ -41,9 +43,9 @@
         </table>
         <form action="contactList" method ="post">
             Product ID: 
-            <input type="number" name="prodID">
+            <input type="number" min="1" name="prodID" required>
             Quantity:
-            <input type="number" name="quantity">
+            <input type="number" min="1" name="quantity" required>
             <input type="submit" value="Submit">
         </form>
     </body>
