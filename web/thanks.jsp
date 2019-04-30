@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Thanks for shpping with us</h1>
+    <h1>Thanks for shopping with us</h1>
 
     <p>Here is the information that you entered:</p>
 
@@ -19,13 +19,13 @@
     <span>${user.lastName}</span><br>
     <label>Email:</label>
     <span>${user.email}</span><br>
-    <label>PhoneNumber:</label>
+    <label>Phone Number:</label>
     <span>${user.phoneNumber}</span><br>
 
     <p>Click return to return to purchase page</p>
 
     <form action="contactList" method="get">
-        <input type="hidden" name="action" value="join">
+        <input type="hidden" name="action" value="buy">
         <input type="submit" value="Return">
     </form>
 
