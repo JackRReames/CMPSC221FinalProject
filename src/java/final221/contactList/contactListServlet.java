@@ -37,37 +37,35 @@ public class contactListServlet extends HttpServlet {
         }
         
 
-            if (action.equals("purchase")) {
+        if (action.equals("purchase")) {
+            
 //                if (session.isNew()){ 
-                    url = "/contact.html";    // the "join" page
+            url = "/contact.html";    // the "join" page
 //                }
 //                else{
 //                    url = "/thanks.jsp";
 //                }
 //            } else if (action.equals("add")) {
 //                url = "/thanks.jsp";
-           }
-            
-            else if (action.equals("add")) {                
-                // get parameters from the request
-                String firstName = request.getParameter("firstName");
-                String lastName = request.getParameter("lastName");
-                String phoneNumber = request.getParameter("phoneNumber");
-                String email = request.getParameter("email");
-                int id = 0;
+        } else if (action.equals("add")) {                
+            // get parameters from the request
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            String phoneNumber = request.getParameter("phoneNumber");
+            String email = request.getParameter("email");
+            int id = 0;
 
-                // store data in User object and save User object in database
-                CustomerBean user = new CustomerBean(id, firstName, lastName, phoneNumber, email);
-                TableAccess userDB = new  TableAccess();
-                userDB.customerInsert(user);
-            
-                // set User object in request object and set URL
-                request.setAttribute("user", user);
+            // store data in User object and save User object in database
+            CustomerBean user = new CustomerBean(id, firstName, lastName, phoneNumber, email);
+            TableAccess userDB = new  TableAccess();
+            userDB.customerInsert(user);
+
+            // set User object in request object and set URL
+            request.setAttribute("user", user);
 //                session.setAttribute("user", user);
 
-                url = "/thanks.jsp";   // the "thanks" page
-            
-            }
+            url = "/thanks.jsp";   // the "thanks" page
+        }
             
             /*
                 else if (action.equals("join")){
