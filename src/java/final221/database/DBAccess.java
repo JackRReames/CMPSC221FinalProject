@@ -46,15 +46,15 @@ public class DBAccess {
             InputStream in = null;
             ResourceBundle newResources;
             
-            in = ClassLoader.getSystemResourceAsStream("db.properties");
+            in = getClass().getResourceAsStream("db.properties");
             
             resources = new PropertyResourceBundle(in);
             
             in.close();
             
-            driver = resources.getString("jdbc.driver");
+            //driver = resources.getString("jdbc.driver");
             url = resources.getString("jdbc.url");
-            System.out.println(url);
+            //System.out.println(url);
             user = resources.getString("jdbc.user");
             password = resources.getString("jdbc.password");
    
@@ -73,7 +73,7 @@ public class DBAccess {
         }
         // attempt to connect to the database
         try {
-            connection = DriverManager.getConnection(url,user,password);  
+            connection = DriverManager.getConnection(url, user, password);  
             
                    selectAllPeople = 
             connection.prepareStatement( "SELECT * FROM CUSTOMERS" );
